@@ -1,17 +1,30 @@
 const express =require("express");
 const app= express();
 const port = process.env.PORT || 3000
+const bodyParser = require('body-parser');
+const catRoutes = require('./routes/catRouter');
+const cat =require ("./models/cat")
+const user =require ("./models/user")
 
-//const cat =require ("./models/cat")
 const sequelize =require("./db/db")
 
+sequelize.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' + err))
+
+  app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.json())
-
-console.log(sequelize.arr);
-
+app.use(catRoutes)
 
 
-app.listen(port, () => {
-    console.log('Server is up on port ' + port)
-})
+
+
+sequelize
+  .sync()
+  .then(result => {
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });

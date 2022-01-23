@@ -3,7 +3,7 @@ const Sequelize=require('sequelize');
 const sequelize =require("../db/db")
 
 
-const Cat =sequelize.define('cat', { 
+const User =sequelize.define('user', { 
 
   
     name:{
@@ -17,15 +17,13 @@ const Cat =sequelize.define('cat', {
         allowNull: false,
     } ,
 
-   weight:{
-       type: Sequelize.INTEGER
-   },
-   userId:{
-    type: Sequelize.INTEGER
-
-   } 
+   email:{
+       type: Sequelize.STRING
+   } ,
+   
 
 });
 
 
-module.exports=Cat;
+module.exports=User;
+
