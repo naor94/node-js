@@ -3,6 +3,8 @@ const app= express();
 const port = process.env.PORT || 3000
 const bodyParser = require('body-parser');
 const catRoutes = require('./routes/catRouter');
+const userRoutes = require('./routes/userRouter');
+
 const cat =require ("./models/cat")
 const user =require ("./models/user")
 
@@ -16,6 +18,7 @@ sequelize.authenticate()
 
 app.use(express.json())
 app.use(catRoutes)
+app.use(userRoutes)
 
 
 

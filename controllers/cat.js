@@ -25,6 +25,14 @@ exports.postAddCat  =(req,res,next)=>{
    
 }
 
+exports.postEditCat=(req,res,next)=>{
+    const catId=req.body.id;
+    const updateName=req.body.name;
+    res.send(catId);
+  
+   
+}
+
 exports.getAllCat  = async (req,res,next)=>{
     const users = await sequelize.query("SELECT * FROM `cats` as c where c.age >6", { type: QueryTypes.SELECT });
     res.send (users);
